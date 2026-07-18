@@ -4,6 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blog — Wave</title>
+  <meta name="description" content="Research on evaluating AI-generated audio: how AI judges compare to human listeners, evaluation metrics, benchmarks, and listening tests.">
+  <link rel="canonical" href="https://wave-hq.com/blog/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Wave">
+  <meta property="og:title" content="Blog — Wave">
+  <meta property="og:description" content="Research on evaluating AI-generated audio: AI judges vs human listeners, metrics, benchmarks, and listening tests.">
+  <meta property="og:url" content="https://wave-hq.com/blog/">
+  <meta name="twitter:card" content="summary">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EEJ1RWV3L5"></script>
   <script>
@@ -12,6 +20,24 @@
     gtag('js', new Date());
 
     gtag('config', 'G-EEJ1RWV3L5');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Wave Blog",
+    "url": "https://wave-hq.com/blog/",
+    "description": "Research on evaluating AI-generated audio: AI judges vs human listeners, evaluation metrics, benchmarks, and listening tests.",
+    "publisher": {"@type": "Organization", "name": "Wave", "url": "https://wave-hq.com/"},
+    "blogPost": [
+      {
+        "@type": "BlogPosting",
+        "headline": "Can AI judge music quality? What the data says in 2026",
+        "url": "https://wave-hq.com/blog/can-ai-judge-music-quality/",
+        "datePublished": "2026-07-18"
+      }
+    ]
+  }
   </script>
   <style>
     html, body {
@@ -24,13 +50,27 @@
       align-items: center;
       justify-content: center;
       font-family: system-ui, -apple-system, sans-serif;
+      color: #000;
+      background: #fff;
+      padding: 0 1.5rem;
+      box-sizing: border-box;
     }
     h1 {
+      margin: 0 0 0.5rem;
+    }
+    .focus {
       margin: 0 0 1.5rem;
+      color: #333;
+      max-width: 32rem;
+      text-align: center;
+      line-height: 1.6;
     }
     nav {
       position: absolute;
       top: 1.5rem;
+      left: 0;
+      right: 0;
+      text-align: center;
     }
     nav a {
       color: #000;
@@ -44,9 +84,15 @@
       list-style: none;
       margin: 0;
       padding: 0;
+      max-width: 32rem;
     }
     ul a {
       color: #000;
+      font-weight: 600;
+    }
+    .date {
+      color: #555;
+      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -56,8 +102,12 @@
     <a href="/blog/">Blog</a>
   </nav>
   <h1>Blog</h1>
+  <p class="focus">Research on evaluating AI-generated audio: AI judges vs human listeners, evaluation metrics, benchmarks, and listening tests.</p>
   <ul>
-    <li><a href="/blog/can-ai-judge-music-quality/">Can AI judge music quality? What the data says in 2026</a></li>
+    <li>
+      <a href="/blog/can-ai-judge-music-quality/">Can AI judge music quality? What the data says in 2026</a>
+      <div class="date">July 2026</div>
+    </li>
   </ul>
 </body>
 </html>

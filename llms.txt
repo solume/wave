@@ -1,6 +1,6 @@
 # Wave
 
-Research and analysis on AI music evaluation.
+Wave is a marketplace for audio quality annotations: expert listeners rate AI-generated audio, giving AI teams human preference data for evaluating and training generative audio models.
 
 ## Blog
 
