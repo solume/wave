@@ -1,0 +1,7 @@
+# Wave
+
+Research and analysis on AI music evaluation.
+
+## Blog
+
+- [Can AI judge music quality? What the data says in 2026](https://wave-hq.com/blog/can-ai-judge-music-quality/): AI judges reach 60–70% agreement with human experts on music quality — below the ~75% rate at which experts agree with each other. Covers evaluation metrics (FAD, KAD, MAD, CLAP), benchmarks (SongEval, MusicEval, Music Arena), trained judge models (Audiobox Aesthetics, reward models), and human listening-test practice (MOS, MUSHRA).
