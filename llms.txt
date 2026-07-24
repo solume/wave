@@ -1,7 +1,7 @@
 # Wave
 
-Wave is a marketplace for audio quality annotations: expert listeners rate AI-generated audio, giving AI teams human preference data for evaluating and training generative audio models.
+Wave is a team of audio-industry veterans producing custom, expert-annotated audio datasets for AI teams: supervised labels (tasks, traces, captions, attributes, corrections, segment-level annotation) co-designed to your spec.
 
 ## Blog
 
-- [Can AI judge music quality? What the data says in 2026](https://wave-hq.com/blog/can-ai-judge-music-quality/): AI judges reach 60–70% agreement with human experts on music quality — below the ~75% rate at which experts agree with each other. Covers evaluation metrics (FAD, KAD, MAD, CLAP), benchmarks (SongEval, MusicEval, Music Arena), trained judge models (Audiobox Aesthetics, reward models), and human listening-test practice (MOS, MUSHRA).
+- [Can AI judge music quality? What the data says in 2026](https://wave-hq.com/blog/can-ai-judge-music-quality/): AI judges reach 60–70% agreement with human experts on music quality, below the ~75% rate at which experts agree with each other. Covers evaluation metrics (FAD, KAD, MAD, CLAP), benchmarks (SongEval, MusicEval, Music Arena), trained judge models (Audiobox Aesthetics, reward models), and human listening-test practice (MOS, MUSHRA).

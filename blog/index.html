@@ -3,15 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blog — Wave</title>
+  <title>Blog | Wave</title>
   <meta name="description" content="Research on evaluating AI-generated audio: how AI judges compare to human listeners, evaluation metrics, benchmarks, and listening tests.">
   <link rel="canonical" href="https://wave-hq.com/blog/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Wave">
-  <meta property="og:title" content="Blog — Wave">
+  <meta property="og:title" content="Blog | Wave">
   <meta property="og:description" content="Research on evaluating AI-generated audio: AI judges vs human listeners, metrics, benchmarks, and listening tests.">
   <meta property="og:url" content="https://wave-hq.com/blog/">
   <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script src="/assets/nav.js" defer></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EEJ1RWV3L5"></script>
   <script>
@@ -34,7 +36,8 @@
         "@type": "BlogPosting",
         "headline": "Can AI judge music quality? What the data says in 2026",
         "url": "https://wave-hq.com/blog/can-ai-judge-music-quality/",
-        "datePublished": "2026-07-18"
+        "datePublished": "2026-07-18",
+        "dateModified": "2026-07-24"
       }
     ]
   }
@@ -42,16 +45,12 @@
   <style>
     html, body {
       height: 100%;
-      margin: 0;
     }
     body {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: system-ui, -apple-system, sans-serif;
-      color: #000;
-      background: #fff;
       padding: 0 1.5rem;
       box-sizing: border-box;
     }
@@ -64,21 +63,6 @@
       max-width: 32rem;
       text-align: center;
       line-height: 1.6;
-    }
-    nav {
-      position: absolute;
-      top: 1.5rem;
-      left: 0;
-      right: 0;
-      text-align: center;
-    }
-    nav a {
-      color: #000;
-      text-decoration: none;
-      margin: 0 0.75rem;
-    }
-    nav a:hover {
-      text-decoration: underline;
     }
     ul {
       list-style: none;
@@ -97,7 +81,7 @@
   </style>
 </head>
 <body>
-  <nav>
+  <nav class="site-nav" data-site-nav>
     <a href="/">Home</a>
     <a href="/blog/">Blog</a>
   </nav>
@@ -106,7 +90,7 @@
   <ul>
     <li>
       <a href="/blog/can-ai-judge-music-quality/">Can AI judge music quality? What the data says in 2026</a>
-      <div class="date">July 2026</div>
+      <div class="date">Updated July 24, 2026</div>
     </li>
   </ul>
 </body>
