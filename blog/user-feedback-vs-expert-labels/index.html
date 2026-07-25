@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Can user feedback replace expert labels for audio AI? What the data says</title>
+  <meta name="description" content="Google's MusicRL trained on 300,000 user preferences, but ablations show preference tracks musicality, not quality. When user feedback is enough vs when you need expert labels.">
+  <link rel="canonical" href="https://wave-hq.com/blog/user-feedback-vs-expert-labels/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Wave">
+  <meta property="og:title" content="Can user feedback replace expert labels for audio AI? What the data says">
+  <meta property="og:description" content="MusicRL trained on 300,000 user preferences, but preference tracks musicality, not quality. When user feedback is enough vs when you need expert labels.">
+  <meta property="og:url" content="https://wave-hq.com/blog/user-feedback-vs-expert-labels/">
+  <meta name="twitter:card" content="summary">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EEJ1RWV3L5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-EEJ1RWV3L5');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Can user feedback replace expert labels for audio AI? What the data says",
+    "description": "Google's MusicRL trained on 300,000 user preferences, but ablations show preference tracks musicality, not quality. When user feedback is enough vs when you need expert labels.",
+    "datePublished": "2026-07-25",
+    "dateModified": "2026-07-25",
+    "author": {"@type": "Organization", "name": "Wave"},
+    "publisher": {"@type": "Organization", "name": "Wave"},
+    "mainEntityOfPage": "https://wave-hq.com/blog/user-feedback-vs-expert-labels/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wave-hq.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://wave-hq.com/blog/"},
+      {"@type": "ListItem", "position": 3, "name": "User feedback vs expert labels", "item": "https://wave-hq.com/blog/user-feedback-vs-expert-labels/"}
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Can you train a music model on likes and skips?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Yes, for preference tuning on an already-capable model. Google's MusicRL used 300,000 pairwise preferences this way, but ablations show likes track musicality, not prompt adherence, so likes and skips refine a model rather than teach it a new skill."}
+      },
+      {
+        "@type": "Question",
+        "name": "Do arena leaderboards reflect expert judgment?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Only partly. Crowd and arena preference correlates with musicality, but in an independent 30-pair probe (TuneJury, 2026), two researchers agreed with released Music Arena votes just 63–70% of the time while agreeing with each other 87% of the time — crowd rankings and expert judgment are related but distinct measures."}
+      },
+      {
+        "@type": "Question",
+        "name": "What agreement rate do music experts reach?",
+        "acceptedAnswer": {"@type": "Answer", "text": "About 75% on head-to-head musicality judgments. CMI-RewardBench (ICML 2026) measured 75.2% re-annotation agreement on musicality and 75.0% on alignment, with a moderate Krippendorff's alpha near 0.50."}
+      },
+      {
+        "@type": "Question",
+        "name": "Why does preference data need a good model first?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Preference tuning refines a model rather than building capability. In MusicRL, the version that applied a quality reward first and then user preference (MusicRL-RU) beat the baseline 87% of the time, outperforming preference-only tuning."}
+      },
+      {
+        "@type": "Question",
+        "name": "Are user preferences biased when rating music?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Yes. Preferences skew toward musicality and perceived authenticity and away from text adherence and technical quality, and listeners rate identical tracks lower once told they are AI-generated (ProMarket, 2026)."}
+      }
+    ]
+  }
+  </script>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script src="/assets/nav.js" defer></script>
+  <style>
+    body {
+      line-height: 1.7;
+    }
+    article {
+      max-width: 42rem;
+      margin: 0 auto;
+      padding: 5.5rem 1.5rem 4rem;
+    }
+    h1 {
+      font-size: 1.9rem;
+      line-height: 1.3;
+      margin: 0 0 0.5rem;
+    }
+    .updated {
+      color: #555;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-size: 1.3rem;
+      margin: 2.5rem 0 0.75rem;
+    }
+    a {
+      color: #000;
+    }
+    .table-wrap {
+      overflow-x: auto;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 0.95rem;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+    }
+    th {
+      background: #f5f5f5;
+    }
+    .faq dt {
+      font-weight: 600;
+      margin-top: 1.25rem;
+    }
+    .faq dd {
+      margin: 0.25rem 0 0;
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" data-site-nav>
+    <a href="/">Home</a>
+    <a href="/blog/">Blog</a>
+  </nav>
+  <article>
+    <h1>Can user feedback replace expert labels for audio AI? What the data says</h1>
+    <p class="updated">Last updated: July 25, 2026</p>
+
+    <p><strong>TL;DR:</strong> Google's MusicRL trained on <strong>300,000 user preferences</strong>, yet its own ablations show preference tracks <strong>musicality</strong> — not text adherence or audio quality (<a href="https://arxiv.org/abs/2402.04229">Cideron et al., ICML 2024</a>). User feedback can <em>tune</em> an already-good model; expert labels are what you need for fine-grained judgment, where music experts agree just <strong>~75%</strong> of the time (<a href="https://arxiv.org/abs/2603.00610">CMI-RewardBench, ICML 2026</a>).</p>
+
+    <h2>User feedback, crowd votes, and expert labels: what's the difference?</h2>
+    <p><strong>User feedback, crowd votes, and expert labels differ on what they measure, how far they scale, and how reliable they are.</strong> User feedback captures real behaviour at massive scale but noisily; crowd votes capture broad listener preference; expert labels capture fine-grained quality and prompt adherence with high consistency. Choosing a signal means choosing which of those you can trade away.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Signal</th><th>What it measures</th><th>Scale</th><th>Reliability</th><th>Best use</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>User feedback (likes, skips)</td><td>Real engagement and revealed preference</td><td>Massive</td><td>Noisy, indirect</td><td>Preference tuning, ranking</td></tr>
+          <tr><td>Crowd votes (arenas)</td><td>Broad listener preference</td><td>High</td><td>Moderate</td><td>Leaderboards, coarse ranking</td></tr>
+          <tr><td>Expert labels</td><td>Fine-grained quality, adherence, structure</td><td>Low</td><td>High (~75% agreement)</td><td>Supervised training, evaluation</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The same three-way split shapes how AI judges are built, too — see <a href="/blog/can-ai-judge-music-quality/">what the data says about whether AI can judge music quality</a>.</p>
+
+    <h2>What did Google learn from 300,000 user preferences?</h2>
+    <p><strong>Google's MusicRL collected 300,000 pairwise user preferences and found that user preference tracks musicality, not text adherence or audio quality alone.</strong> The paper's authors write that "ablation studies shed light on the musical attributes influencing human preferences, indicating that text adherence and quality only account for a part of it" (<a href="https://arxiv.org/abs/2402.04229">Cideron et al., Google DeepMind, ICML 2024</a>).</p>
+    <p>MusicRL layered a quality-and-adherence reward first and <em>then</em> user preference; that combined version (MusicRL-RU) was preferred over the baseline <strong>87%</strong> of the time — more than preference tuning alone. User feedback improved the model, but only as a finishing layer on signals the crowd does not supply.</p>
+
+    <h2>Do crowd votes and expert panels judge music the same way?</h2>
+    <p><strong>Only partly — crowd preference is dominated by musicality, so reward models scored on musicality reach roughly 73% agreement with crowd votes, but the crowd and experts diverge on prompt adherence and fine detail.</strong> Live platforms like <a href="https://arxiv.org/abs/2507.20900">Music Arena</a> (Carnegie Mellon) aggregate anonymous pairwise votes — including an explicit "both are bad" option — into public rankings.</p>
+    <p>Those rankings are useful but are not a proxy for expert judgment. In an independent probe, two researchers blind-labeled 30 pairs from the Music Arena split and agreed with the public vote only <strong>63.3% and 70.0%</strong> of the time, while agreeing with each other on <strong>86.7%</strong> — a sample its authors call too small for a precise ceiling (<a href="https://arxiv.org/abs/2606.17006">TuneJury, 2026</a>). Crowd data tells you what listeners prefer, not why a track is well made.</p>
+
+    <h2>How much more reliable are expert annotators?</h2>
+    <p><strong>Expert music annotators agree with each other about 75% of the time on head-to-head musicality judgments — a moderate ceiling, not a perfect one.</strong> On <a href="https://arxiv.org/abs/2603.00610">CMI-RewardBench</a> (ICML 2026), expert re-annotation agreement was <strong>75.2%</strong> on musicality and <strong>75.0%</strong> on alignment, with a moderate Krippendorff's alpha near <strong>0.50</strong>.</p>
+    <p>Expert panels earn that reliability through structure: <a href="https://arxiv.org/abs/2505.10793">SongEval</a> was rated by <strong>16 professional annotators</strong> across 2,399 full-length songs (140+ hours) on five aesthetic dimensions, and MUSHRA (ITU-R BS.1534) calls for <strong>15–20 screened listeners</strong> per test. Reward models trained on expert preferences reach about <strong>78%</strong> agreement on CMI-RewardBench, above general models like Gemini 3 Pro (65.8%) and Qwen3-Omni (60.4%).</p>
+
+    <h2>Are user preferences biased?</h2>
+    <p><strong>Yes — user ratings skew toward musicality and perceived authenticity and away from text adherence and technical quality, and identical tracks score lower once listeners know they are AI-generated.</strong> In a 2026 study, listeners preferred AI-generated music in blind tests but became less willing to replay or pay for it the moment it was labelled "AI" (<a href="https://www.promarket.org/2026/05/04/consumers-prefer-ai-music-until-theyre-told-its-ai/">ProMarket, 2026</a>).</p>
+    <p>Preference data also inherits popularity and cultural bias from the population that produced it. None of that makes user feedback useless — it measures reception, not craft.</p>
+
+    <h2>When is user feedback enough to train on?</h2>
+    <p><strong>User feedback is enough when you are tuning an already-capable model, optimizing for engagement, or operating at a scale expert labels cannot reach.</strong> Once a model is good, preference data is the cheapest way to push it toward what listeners enjoy, and platforms like Spotify treat likes and skips as exactly this implicit signal.</p>
+    <p>The constraint is quality, not volume: a smaller set of clean, high-signal judgments beats a larger noisy one, so millions of ambiguous skips do not substitute for a well-designed preference set.</p>
+
+    <h2>When do you need expert labels instead?</h2>
+    <p><strong>You need expert labels for supervised training, for fine-grained or segment-level judgment, and for the "both outputs are bad" case where preference data breaks down.</strong> When two candidates are each poor, a forced pairwise choice teaches a model "which bad output is less bad" rather than how to be good — the degenerate-preference problem that clean expert annotation avoids by scoring against an absolute standard.</p>
+    <p>Expert labels are also the only signal that reliably captures prompt adherence, structure, and mix-level detail — the dimensions the crowd underweights. Once you need them, the next question is who supplies them: <a href="/blog/audio-annotation-options-compared/">crowd platforms, data vendors, and expert audio teams compared</a>.</p>
+
+    <h2>How to choose: match the signal to the decision</h2>
+    <p>The signals are complements, not rivals, so the useful question is which one fits the decision in front of you. Ask three things:</p>
+    <p><strong>(1) Are you tuning an existing model or teaching it a new capability?</strong> Tuning tolerates preference data; new capability needs labelled ground truth. <strong>(2) Do you need a holistic "which is better," or a fine-grained, segment-level judgment?</strong> Holistic suits the crowd; fine-grained needs experts. <strong>(3) Can you tolerate noise, or do you need a defensible standard?</strong> Engagement metrics are fine when noise averages out; evaluation and safety-critical work are not. Match the signal to the answer rather than defaulting to whichever data is cheapest to collect.</p>
+
+    <h2>FAQ</h2>
+    <dl class="faq">
+      <dt>Can you train a music model on likes and skips?</dt>
+      <dd>Yes, for preference tuning on an already-capable model. Google's MusicRL used 300,000 pairwise preferences this way, but ablations show likes track musicality, not prompt adherence, so likes and skips refine a model rather than teach it a new skill.</dd>
+      <dt>Do arena leaderboards reflect expert judgment?</dt>
+      <dd>Only partly. Crowd and arena preference correlates with musicality, but in an independent 30-pair probe (TuneJury, 2026), two researchers agreed with released Music Arena votes just 63–70% of the time while agreeing with each other 87% of the time — crowd rankings and expert judgment are related but distinct measures.</dd>
+      <dt>What agreement rate do music experts reach?</dt>
+      <dd>About 75% on head-to-head musicality judgments. CMI-RewardBench (ICML 2026) measured 75.2% re-annotation agreement on musicality and 75.0% on alignment, with a moderate Krippendorff's alpha near 0.50.</dd>
+      <dt>Why does preference data need a good model first?</dt>
+      <dd>Preference tuning refines a model rather than building capability. In MusicRL, the version that applied a quality reward first and then user preference (MusicRL-RU) beat the baseline 87% of the time, outperforming preference-only tuning.</dd>
+      <dt>Are user preferences biased when rating music?</dt>
+      <dd>Yes. Preferences skew toward musicality and perceived authenticity and away from text adherence and technical quality, and listeners rate identical tracks lower once told they are AI-generated (ProMarket, 2026).</dd>
+    </dl>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin: 2.5rem 0 1.5rem">
+    <p><strong>Wave</strong> is a team of audio-industry veterans with decades in studios and control rooms — producing expert-annotated, studio-quality audio datasets for AI teams. The ~75% expert ceiling in this article is the product: custom datasets built to your spec — tasks, traces, captions, attributes, corrections, segment-level labels — by ears that can hear the difference. <a href="/">Talk to us</a>.</p>
+  </article>
+</body>
+</html>

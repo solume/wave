@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blog | Wave</title>
-  <meta name="description" content="Research on evaluating AI-generated audio: how AI judges compare to human listeners, evaluation metrics, benchmarks, and listening tests.">
+  <meta name="description" content="Research on evaluating and labeling AI audio: AI judges vs human listeners, evaluation metrics, benchmarks, listening tests, and how to source and annotate audio training data.">
   <link rel="canonical" href="https://wave-hq.com/blog/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Wave">
   <meta property="og:title" content="Blog | Wave">
-  <meta property="og:description" content="Research on evaluating AI-generated audio: AI judges vs human listeners, metrics, benchmarks, and listening tests.">
+  <meta property="og:description" content="Research on evaluating and labeling AI audio: AI judges vs human listeners, metrics, benchmarks, listening tests, and how to source and annotate audio data.">
   <meta property="og:url" content="https://wave-hq.com/blog/">
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -32,7 +32,7 @@
     "@type": "Blog",
     "name": "Wave Blog",
     "url": "https://wave-hq.com/blog/",
-    "description": "Research on evaluating AI-generated audio: AI judges vs human listeners, evaluation metrics, benchmarks, and listening tests.",
+    "description": "Research on evaluating and labeling AI audio: AI judges vs human listeners, evaluation metrics, benchmarks, listening tests, and how to source and annotate audio training data.",
     "publisher": {"@type": "Organization", "name": "Wave", "url": "https://wave-hq.com/"},
     "blogPost": [
       {
@@ -41,6 +41,20 @@
         "url": "https://wave-hq.com/blog/can-ai-judge-music-quality/",
         "datePublished": "2026-07-18",
         "dateModified": "2026-07-24"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Can user feedback replace expert labels for audio AI? What the data says",
+        "url": "https://wave-hq.com/blog/user-feedback-vs-expert-labels/",
+        "datePublished": "2026-07-25",
+        "dateModified": "2026-07-25"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Who should label your audio data? Crowd platforms, data vendors, and expert teams compared (2026)",
+        "url": "https://wave-hq.com/blog/audio-annotation-options-compared/",
+        "datePublished": "2026-07-25",
+        "dateModified": "2026-07-25"
       }
     ]
   }
@@ -73,13 +87,16 @@
       padding: 0;
       max-width: 32rem;
     }
+    ul li {
+      margin: 0 0 1rem;
+      line-height: 1.5;
+    }
+    ul li:last-child {
+      margin-bottom: 0;
+    }
     ul a {
       color: #000;
       font-weight: 600;
-    }
-    .date {
-      color: #555;
-      font-size: 0.9rem;
     }
   </style>
 </head>
@@ -89,11 +106,16 @@
     <a href="/blog/">Blog</a>
   </nav>
   <h1>Blog</h1>
-  <p class="focus">Research on evaluating AI-generated audio: AI judges vs human listeners, evaluation metrics, benchmarks, and listening tests.</p>
+  <p class="focus">Research on evaluating and labeling AI audio: AI judges vs human listeners, evaluation metrics, benchmarks, listening tests, and how to source and annotate audio training data.</p>
   <ul>
     <li>
       <a href="/blog/can-ai-judge-music-quality/">Can AI judge music quality? What the data says in 2026</a>
-      <div class="date">Updated July 24, 2026</div>
+    </li>
+    <li>
+      <a href="/blog/user-feedback-vs-expert-labels/">Can user feedback replace expert labels for audio AI? What the data says</a>
+    </li>
+    <li>
+      <a href="/blog/audio-annotation-options-compared/">Who should label your audio data? Crowd platforms, data vendors, and expert teams compared (2026)</a>
     </li>
   </ul>
 </body>
